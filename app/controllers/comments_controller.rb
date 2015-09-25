@@ -5,7 +5,6 @@ class CommentsController < ApplicationController
   # GET /comments.json
   def index
     @comments = Comment.all
-    @post = Post.find(params[:post_id])
   end
 
   # GET /comments/1
@@ -16,7 +15,6 @@ class CommentsController < ApplicationController
   # GET /comments/new
   def new
     @comment = Comment.new
-    @post = Post.find(params[:post_id])
   end
 
   # GET /comments/1/edit
@@ -26,7 +24,6 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    binding.pry
     @comment = Comment.new(comment_params)
 
     respond_to do |format|
@@ -72,6 +69,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:post_id, :content)
+      params.require(:comment).permit(:content, :post_id)
     end
 end
